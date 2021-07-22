@@ -5,9 +5,8 @@
     <b-form-input type="email" v-model="email" /><br />
     <label>Password: </label>
     <b-form-input type="password" v-model="password" /><br />
-    <b-button variant="outline-primary" @click='login()'>Log in</b-button>
-    <router-link to="/register">Sign up</router-link>
-    <p>{{ getData }}</p>
+    <b-button variant="primary" @click="login()">Log in</b-button>
+    <b-button square router-link to="/register">Sign Up</b-button>
   </div>
 </template>
 
@@ -38,8 +37,8 @@ export default {
 <style>
 @import url("https://fonts.googleapis.com/css2?family=Monoton&display=swap");
 div {
-  margin: 60px;
-  padding: 50px;
+  margin: 40px;
+  padding: 40px;
   background: linear-gradient(
     90deg,
     rgba(255, 180, 178, 1) 0%,
@@ -47,7 +46,9 @@ div {
   );
 }
 h1 {
+  margin-bottom: 50px;
   font-family: "Monoton", cursive;
+  font-size: 60px;
   color: rgb(70, 62, 62);
 }
 </style>
