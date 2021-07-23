@@ -16,25 +16,48 @@ export default {
   name: "Login",
   data() {
     return {
-      email: "",
-      password: "",
-      getData: {},
+      email: "ultrasoft.011@gmail.com",
+      password: "Gali1271*+",
+      // getData: {},
+      error: false,
+      errorMessage: "",
     };
   },
   methods: {
     async login() {
       // console.log(`${this.email} ${this.password}`)
-      const dataGet = await axios.get(
-        "https://jsonplaceholder.typicode.com/todos/1"
-      );
-      console.log(dataGet);
-      this.getData = dataGet.data;
+      try {
+        const user = {
+          email: this.email,
+          password: this.password,
+        };
+        const userLogin = await axios.post(
+          "http://localhost:3000/api/users/login",
+          user
+        );
+        console.log(userLogin);
+        console.log(
+          "Optenemos usuari con axios" + JSON.stringify(userLogin.data)
+        ); // POR QUE NOS IMPRIME OBJETO OBJETO
+
+        this.error = false;
+        this.errorMessage = "";
+        localStorage.setItem("userApp", JSON.stringify(userLogin.data));
+        this.$router.push({
+          name: "Home",
+        });
+      } catch (error) {
+        this.error = true;
+        this.errorMessage = error.response.data.message; // como aceder al mensage
+        console.log(error.response);
+        console.log(error.response.data.message);
+      }
     },
   },
 };
 </script>
 
-<style>
+<style scoped>
 @import url("https://fonts.googleapis.com/css2?family=Monoton&display=swap");
 div {
   margin: 40px;
